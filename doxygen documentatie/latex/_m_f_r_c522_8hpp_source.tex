@@ -1,0 +1,276 @@
+\hypertarget{_m_f_r_c522_8hpp_source}{}\doxysection{MFRC522.\+hpp}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{2 \textcolor{comment}{// (C) Copyright Bas van der Geer 2019.}}
+\DoxyCodeLine{3 \textcolor{comment}{// Distributed under the Boost Software License, Version 1.0. (See}}
+\DoxyCodeLine{4 \textcolor{comment}{// accompanying file LICENSE\_1\_0.txt or copy at}}
+\DoxyCodeLine{5 \textcolor{comment}{// http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{6 \textcolor{comment}{// -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#ifndef MFRC522\_HPP}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#define MFRC522\_HPP}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}hwlib.hpp"{}}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{spi_setup_8hpp}{spiSetup.hpp}}"{}}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keyword}{class }\mbox{\hyperlink{class_m_f_r_c522}{MFRC522}} \{}
+\DoxyCodeLine{17 \textcolor{keyword}{private}:}
+\DoxyCodeLine{18     }
+\DoxyCodeLine{19     \mbox{\hyperlink{classspi_setup}{spiSetup}} \&bus;}
+\DoxyCodeLine{20     hwlib::pin\_out\& slaveSel;}
+\DoxyCodeLine{21     hwlib::pin\_out\& reset;}
+\DoxyCodeLine{22 \textcolor{keyword}{public}:}
+\DoxyCodeLine{23    }
+\DoxyCodeLine{24     \textcolor{comment}{//const static uint8\_t reserved         = 0x00;}}
+\DoxyCodeLine{25     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t CommandReg         = 0x01;     }
+\DoxyCodeLine{26     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a76de8291c84f20fe04af16463faffdac}{ComIEnReg}}          = 0x02;     }
+\DoxyCodeLine{27     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_abe05fe9fcedbb34cde4ef0f09c7373db}{DivIEnReg}}          = 0x03;     }
+\DoxyCodeLine{28     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a5bb072accfc1422669f46aec2daddc08}{ComIrqReg}}          = 0x04;     }
+\DoxyCodeLine{29     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_ae83309384b82b6f274b5775cd76b0510}{DivIrqReg}}          = 0x05;     }
+\DoxyCodeLine{30     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_abd929db950e038f6b964d0620dc4a606}{ErrorReg}}           = 0x06;     }
+\DoxyCodeLine{31     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_aa08149e9d55faba97505fff8f089df6a}{Status1Reg}}         = 0x07;     }
+\DoxyCodeLine{32     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a559ef7dfe0c245735642111734067580}{Status2Reg}}         = 0x08;     }
+\DoxyCodeLine{33     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a83b5946c82d3ea0efbeb433fc7883819}{FIFODataReg}}        = 0x09;     }
+\DoxyCodeLine{34     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_add57d42bb2de0e5d860b103f62c08a9d}{FIFOLevelReg}}       = 0x0A;     }
+\DoxyCodeLine{35     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_ad7b977a0fecf852e1a564a0339b470b4}{WaterLevelReg}}      = 0x0B;     }
+\DoxyCodeLine{36     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a18ecd5d31d1892b81c7fba4d86cfe509}{ControlReg}}         = 0x0C;     }
+\DoxyCodeLine{37     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_ae03b342f943f3cba80fd98c9db921b1b}{BitFramingReg}}      = 0x0D;     }
+\DoxyCodeLine{38     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a6bbad73e1fd964473610adf1f3eb8a77}{CollReg}}            = 0x0E;     }
+\DoxyCodeLine{39     \textcolor{comment}{//const static uint8\_t reserved         = 0x0F; }}
+\DoxyCodeLine{40     \textcolor{comment}{//Page 1: COmmand}}
+\DoxyCodeLine{41     \textcolor{comment}{//const static uint8\_t reserved         = 0x10;     }}
+\DoxyCodeLine{42     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a0509425924d23eb15b82fe70409e1afd}{ModeReg}}            = 0x11;     }
+\DoxyCodeLine{43     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a5f1ad3684cab8e35cb55c0ee88b1169e}{TxModeReg}}          = 0x12;     }
+\DoxyCodeLine{44     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_afa09626edf95b29b5a0a2704163856c4}{RxModeReg}}          = 0x13;     }
+\DoxyCodeLine{45     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a31362c1d22f22ba49b0154cd91d9a1f8}{TxControlReg}}       = 0x14;     }
+\DoxyCodeLine{46     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a6be33368376daa7fca206ef5847eae70}{TxASKReg}}           = 0x15;     }
+\DoxyCodeLine{47     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_aed95c578c94a3aebe377736621b80bda}{TxSelReg}}           = 0x16;     }
+\DoxyCodeLine{48     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_ac2c0cc7b2d5068c85074acc23a648304}{RxSelReg}}           = 0x17;     }
+\DoxyCodeLine{49     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a1b2198d0854741c169234c9d2739e504}{RxThresholdReg}}     = 0x18;     }
+\DoxyCodeLine{50     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a572ee6f622da471c04fb82775a3bc0e5}{DemodReg}}           = 0x19;     }
+\DoxyCodeLine{51     \textcolor{comment}{//const static uint8\_t reserved         = 0x1A;     }}
+\DoxyCodeLine{52     \textcolor{comment}{//const static uint8\_t reserved         = 0x1B;}}
+\DoxyCodeLine{53     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_aa976848be7b3270afec5207783cc2772}{MfTxReg}}            = 0x1C;     }
+\DoxyCodeLine{54     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_acb62dc819b455ee6a404bdfe191a7132}{MfRxReg}}            = 0x1D;     }
+\DoxyCodeLine{55     \textcolor{comment}{//const static uint8\_t reserved         = 0x1E;}}
+\DoxyCodeLine{56     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a277d829630c5c1fc131c71e286fc322a}{SerialSpeedReg}}     = 0x1F;     }
+\DoxyCodeLine{57     \textcolor{comment}{//Page 2: Configuration}}
+\DoxyCodeLine{58     \textcolor{comment}{//const static uint8\_t reserved         = 0x20; }}
+\DoxyCodeLine{59     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_ac1d563b996ba0cdf5f94dee272454b4c}{CRCResultRegH}}      = 0x21;     }
+\DoxyCodeLine{60     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_aac4ba530ce3dc672d22e1840022c8dbf}{CRCResultRegL}}      = 0x22;     }
+\DoxyCodeLine{61     \textcolor{comment}{//const static uint8\_t reserved         = 0x23;}}
+\DoxyCodeLine{62     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a8f8491e3696a212253204e0a4d50b460}{ModWidthReg}}        = 0x24;     }
+\DoxyCodeLine{63     \textcolor{comment}{//const static uint8\_t reserved         = 0x25;}}
+\DoxyCodeLine{64     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a6247cc38cc52524eb30d94a9e745811e}{RFCfgReg}}           = 0x26;     }
+\DoxyCodeLine{65     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a91ddbaf4e4bc33dd43a7599238e9f9a1}{GsNReg}}             = 0x27;     }
+\DoxyCodeLine{66     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_ae9dab4aef1658240f8ea032496311c69}{CWGsPReg}}           = 0x28;     }
+\DoxyCodeLine{67     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a94e96f5d58f9f52756235366a0c8a53a}{ModGsPReg}}          = 0x29;     }
+\DoxyCodeLine{68     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a3caf3862116749118e52431d31048f68}{TModeReg}}           = 0x2A;     }
+\DoxyCodeLine{69     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a748558ee5f116ea8c16488dc42a9009e}{TPrescalerReg}}      = 0x2B;     }
+\DoxyCodeLine{70     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_adb9c85f5225d44862e74223efaea249d}{TReloadRegH}}        = 0x2C;     }
+\DoxyCodeLine{71     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_ab8ee05c49c5895b521f35b413c8832c5}{TReloadRegL}}        = 0x2D;     }
+\DoxyCodeLine{72     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a457f1df041869fe30a5c01b9a628edd8}{TCounterValueRegH}}  = 0x2E;     }
+\DoxyCodeLine{73     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_addf045e6b7636472c27caec39eeb902b}{TCounterValueRegL}}  = 0x2F;     }
+\DoxyCodeLine{74     \textcolor{comment}{//Page 3: Test register}}
+\DoxyCodeLine{75     \textcolor{comment}{//const static uint8\_t reserved         = 0x30;}}
+\DoxyCodeLine{76     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a82581733220799c91c85268e5e453519}{TestSel1Reg}}        = 0x31;     }
+\DoxyCodeLine{77     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a2254d965da14ff4d6de9fd7f3b214eab}{TestSel2Reg}}        = 0x32;     }
+\DoxyCodeLine{78     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a0b73879826d5984c9ce1c9b8eb7403b2}{TestPinEnReg}}       = 0x33;     }
+\DoxyCodeLine{79     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_ad5b177065c774237eb2756a7209ebaac}{TestPinValueReg}}    = 0x34;     }
+\DoxyCodeLine{80     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_acced8d7ea05d430a8f48ee5d30c63443}{TestBusReg}}         = 0x35;     }
+\DoxyCodeLine{81     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a763839e9e665049bc5ea0c754aaa47a4}{AutoTestReg}}        = 0x36;     }
+\DoxyCodeLine{82     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a87c131b5dc310dd451ed2339bc2acf04}{VersionReg}}         = 0x37;     }
+\DoxyCodeLine{83     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_ad05c5ce439020bd080a2102804e3ad96}{AnalogTestReg}}      = 0x38;     }
+\DoxyCodeLine{84     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a58755b48e8eed115aa5650e8bfb8986f}{TestDAC1Reg}}        = 0x39;     }
+\DoxyCodeLine{85     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_aff5ac0eb39afa116dfd2a8a390b91d25}{TestDAC2Reg}}        = 0x3A;     }
+\DoxyCodeLine{86     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_addbdc1d2d79dc48b5dc8b05757c89d82}{TestADCReg}}         = 0x3B;     }
+\DoxyCodeLine{87     \textcolor{comment}{//const static uint8\_t reserved         = 0x3C;}}
+\DoxyCodeLine{88     \textcolor{comment}{//const static uint8\_t reserved         = 0x3D;}}
+\DoxyCodeLine{89     \textcolor{comment}{//const static uint8\_t reserved         = 0x3E;}}
+\DoxyCodeLine{90     \textcolor{comment}{//const static uint8\_t reserved         = 0x3F;}}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{93     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_aa0a33c3059b58a75fc8c1ff8201601bb}{cmdIdle}}            = 0x00;     }
+\DoxyCodeLine{94     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a3a33c02b0ee2699dc7fd1e0d9522e599}{cmdMem}}             = 0x01;     }
+\DoxyCodeLine{95     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a5db2970d46d7b445af997cf42c036e27}{cmdGenRandomID}}     = 0x02;     }
+\DoxyCodeLine{96     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_ac846a3bc11884b6ef2727b08bfa1597f}{cmdCalcCRC}}         = 0x03;     }
+\DoxyCodeLine{97     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a583d65bc8e373170a37502a3db46ccee}{cmdTransmit}}        = 0x04;     }
+\DoxyCodeLine{98     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a9da4cae4ffc7a4ee4704660d1a63c78d}{cmdNoCmdChange}}     = 0x07;     }
+\DoxyCodeLine{99     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a45174d03bf2ae78cffed9e2d94b78343}{cmdReceive}}         = 0x08;     }
+\DoxyCodeLine{100     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_afecac251dc4b33d217f9c606d1e72b6d}{cmdTransceive}}      = 0x0C;     }
+\DoxyCodeLine{101     \textcolor{comment}{//const static uint8\_t reserved         = 0x0D;}}
+\DoxyCodeLine{102     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_afae620bc8a05c0dc01b87673ac2b2f02}{cmdMFAuthent}}       = 0x0E;     }
+\DoxyCodeLine{103     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_ac17ff69d49cd5965d8f91bf8df93c39a}{cmdSoftReset}}       = 0x0F;     }
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a8e438d50133c5a2a106e9bdbdeeb19ec}{mifareReqa}}         = 0x26;     }
+\DoxyCodeLine{107     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t mifareWupa         = 0x52;      }
+\DoxyCodeLine{108     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t mifareHalt         = 0x50;     }
+\DoxyCodeLine{109     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t mifareAuthKeyA     = 0x60;     }
+\DoxyCodeLine{110     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t mifareAuthKeyB     = 0x61;}
+\DoxyCodeLine{111     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t mifareCl1          = 0x93; }
+\DoxyCodeLine{112     \textcolor{comment}{//These commands can only be used after authenticate.    }}
+\DoxyCodeLine{113     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t mifareRead         = 0x30;     }
+\DoxyCodeLine{114     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t mifareWrite        = 0xA0;     }
+\DoxyCodeLine{115     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t mifareDecrement    = 0xC0;     }
+\DoxyCodeLine{116     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t mifareIncrement    = 0xC1;     }
+\DoxyCodeLine{117     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t mifareRestore      = 0xC2;     }
+\DoxyCodeLine{118     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t mifareTransfer     = 0xB0;     }
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120     }
+\DoxyCodeLine{121     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t OkStatus           = 0x00;     }
+\DoxyCodeLine{122     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a6c50a079169f7765026e54b94a6a97a8}{ProtocolErr}}        = 0x01;     }
+\DoxyCodeLine{123     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a6e6c56ee1d07e961a1dea963fea4df99}{ParityErr}}          = 0x02;     }
+\DoxyCodeLine{124     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t CRCErr             = 0x03;     }
+\DoxyCodeLine{125     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t CollErr            = 0x04;     }
+\DoxyCodeLine{126     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t BufferOvrlErr      = 0x05;     }
+\DoxyCodeLine{127     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t TempErr            = 0x06;     }
+\DoxyCodeLine{128     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t WrErr              = 0x07;     }
+\DoxyCodeLine{129     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t TimeOut            = 0x08;     }
+\DoxyCodeLine{130     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t BCCErr             = 0x09;     }
+\DoxyCodeLine{131     \textcolor{keyword}{const} \textcolor{keyword}{static} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a60ea9e92461662d294c83cf2e156f5ad}{Statuserr}}          = 0x10;     }
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134     }
+\DoxyCodeLine{135     \textcolor{keyword}{const} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a56c8309a003cf1a5d8479c7783826f8e}{FIFOAmountOfBytes}} = 64;}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137     }
+\DoxyCodeLine{138     \textcolor{keyword}{const} uint8\_t selfTestFIFOBufferV1[64] \{}
+\DoxyCodeLine{139         0x00, 0xC6, 0x37, 0xD5, 0x32, 0xB7, 0x57, 0x5C,}
+\DoxyCodeLine{140         0xC2, 0xD8, 0x7C, 0x4D, 0xD9, 0x70, 0xC7, 0x73,}
+\DoxyCodeLine{141         0x10, 0xE6, 0xD2, 0xAA, 0x5E, 0xA1, 0x3E, 0x5A,}
+\DoxyCodeLine{142         0x14, 0xAF, 0x30, 0x61, 0xC9, 0x70, 0xDB, 0x2E,}
+\DoxyCodeLine{143         0x64, 0x22, 0x72, 0xB5, 0xBD, 0x65, 0xF4, 0xEC,}
+\DoxyCodeLine{144         0x22, 0xBC, 0xD3, 0x72, 0x35, 0xCD, 0xAA, 0x41,}
+\DoxyCodeLine{145         0x1F, 0xA7, 0xF3, 0x53, 0x14, 0xDE, 0x7E, 0x02,}
+\DoxyCodeLine{146         0xD9, 0x0F, 0xB5, 0x5E, 0x25, 0x1D, 0x29, 0x79}
+\DoxyCodeLine{147     \};}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{151     \textcolor{keyword}{const} uint8\_t \mbox{\hyperlink{class_m_f_r_c522_a6973b73a8a922ac09b9d89489bdbc333}{selfTestFIFOBufferV2}}[64] \{}
+\DoxyCodeLine{152         0x00, 0xEB, 0x66, 0xBA, 0x57, 0xBF, 0x23, 0x95,}
+\DoxyCodeLine{153         0xD0, 0xE3, 0x0D, 0x3D, 0x27, 0x89, 0x5C, 0xDE,}
+\DoxyCodeLine{154         0x9D, 0x3B, 0xA7, 0x00, 0x21, 0x5B, 0x89, 0x82,}
+\DoxyCodeLine{155         0x51, 0x3A, 0xEB, 0x02, 0x0C, 0xA5, 0x00, 0x49,}
+\DoxyCodeLine{156         0x7C, 0x84, 0x4D, 0xB3, 0xCC, 0xD2, 0x1B, 0x81,}
+\DoxyCodeLine{157         0x5D, 0x48, 0x76, 0xD5, 0x71, 0x61, 0x21, 0xA9,}
+\DoxyCodeLine{158         0x86, 0x96, 0x83, 0x38, 0xCF, 0x9D, 0x5B, 0x6D,}
+\DoxyCodeLine{159         0xDC, 0x15, 0xBA, 0x3E, 0x7D, 0x95, 0x3B, 0x2F}
+\DoxyCodeLine{160     \};}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162     \mbox{\hyperlink{class_m_f_r_c522}{MFRC522}}(\mbox{\hyperlink{classspi_setup}{spiSetup}}\& bus, hwlib::pin\_out\& slaveSel, hwlib::pin\_out\& reset);}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164 \textcolor{comment}{//\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166     uint8\_t readRegister(uint8\_t regAddress);}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168     \textcolor{keywordtype}{void} readRegister(uint8\_t regAddress, \textcolor{keywordtype}{int} amountOfBytes, uint8\_t data[]);}
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170     \textcolor{keywordtype}{void} writeRegister(uint8\_t regAddress, uint8\_t newByte);}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{172     \textcolor{keywordtype}{void} writeRegister(uint8\_t regAddress, uint8\_t writeBytes[], \textcolor{keywordtype}{int} amountOfBytes);}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{174 \textcolor{comment}{//\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{175 }
+\DoxyCodeLine{176     \textcolor{keywordtype}{void} setBitMask(uint8\_t regAddress, uint8\_t mask);}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178     \textcolor{keywordtype}{void} clearBitMask(uint8\_t regAddress, uint8\_t mask);}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180 \textcolor{comment}{//\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{181 }
+\DoxyCodeLine{182     \textcolor{keywordtype}{void} stateAntennas(\textcolor{keywordtype}{bool} state);}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{184     uint8\_t getVersion();}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{186     \textcolor{keywordtype}{void} waitForBootUp();}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188     \textcolor{keywordtype}{void} hardReset();}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{190     \textcolor{keywordtype}{void} softReset();}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192     uint8\_t checkError();}
+\DoxyCodeLine{193 }
+\DoxyCodeLine{194 \textcolor{comment}{//\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196     \textcolor{keywordtype}{void} clearFIFOBuffer(\textcolor{keyword}{const} uint8\_t amntOfBytes = 64);}
+\DoxyCodeLine{197 }
+\DoxyCodeLine{198     \textcolor{keywordtype}{void} clearInternalBuffer();}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200 \textcolor{comment}{//\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202    }
+\DoxyCodeLine{203     \textcolor{keywordtype}{void} initialize();}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205     \textcolor{keywordtype}{bool} selfTest();}
+\DoxyCodeLine{206 }
+\DoxyCodeLine{207     uint8\_t communicate(uint8\_t cmd, uint8\_t sendData[], \textcolor{keywordtype}{int} sendDataLength, uint8\_t receivedData[], \textcolor{keywordtype}{int} receivedDataLength);}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{209     \textcolor{keywordtype}{bool} isCardPresented();}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{211     \textcolor{keywordtype}{bool} cardCheck();}
+\DoxyCodeLine{212 }
+\DoxyCodeLine{213     uint8\_t getUID(uint8\_t uid[5]);}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{215     \textcolor{keywordtype}{void} waitForUID(uint8\_t UID[5]);}
+\DoxyCodeLine{216 }
+\DoxyCodeLine{217     \textcolor{keywordtype}{bool} checkBCC(uint8\_t UID[5]);}
+\DoxyCodeLine{218 }
+\DoxyCodeLine{219     \textcolor{keywordtype}{void} printUID(uint8\_t UID[5]);}
+\DoxyCodeLine{220 }
+\DoxyCodeLine{221     \textcolor{keywordtype}{bool} isUIDEqual(\textcolor{keyword}{const} uint8\_t cardUID[5], \textcolor{keyword}{const} uint8\_t checkUID[4]);}
+\DoxyCodeLine{222 }
+\DoxyCodeLine{223     uint8\_t calculateCRC(uint8\_t data[], \textcolor{keywordtype}{int} length, uint8\_t result[]);}
+\DoxyCodeLine{224 }
+\DoxyCodeLine{225     uint8\_t selectCard(uint8\_t UID[4]);}
+\DoxyCodeLine{226 }
+\DoxyCodeLine{227     uint8\_t authenticateCard(uint8\_t cmd, uint8\_t blockAddress, uint8\_t sectorKey[6], uint8\_t uid[4]);}
+\DoxyCodeLine{228 }
+\DoxyCodeLine{229     uint8\_t readBlockFromCard();}
+\DoxyCodeLine{230 }
+\DoxyCodeLine{231     uint8\_t writeToBlockOnCard();}
+\DoxyCodeLine{232 }
+\DoxyCodeLine{233 }
+\DoxyCodeLine{234 }
+\DoxyCodeLine{235     \textcolor{keywordtype}{void} test();}
+\DoxyCodeLine{236 }
+\DoxyCodeLine{237     uint8\_t read\_fifo()\{ \textcolor{comment}{//reads the received data out of the fifo buffer into the array}}
+\DoxyCodeLine{238         \textcolor{keywordflow}{return} readRegister(\mbox{\hyperlink{class_m_f_r_c522_a83b5946c82d3ea0efbeb433fc7883819}{FIFODataReg}});;}
+\DoxyCodeLine{239     \}}
+\DoxyCodeLine{240     }
+\DoxyCodeLine{241     \textcolor{keywordtype}{void} write(uint8\_t sendData[], \textcolor{keywordtype}{int} lengte)\{}
+\DoxyCodeLine{242         writeRegister(\mbox{\hyperlink{class_m_f_r_c522_add57d42bb2de0e5d860b103f62c08a9d}{FIFOLevelReg}}, 0x80);}
+\DoxyCodeLine{243         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < lengte; i++)\{}
+\DoxyCodeLine{244             writeRegister(\mbox{\hyperlink{class_m_f_r_c522_a83b5946c82d3ea0efbeb433fc7883819}{FIFODataReg}}, sendData[i]);}
+\DoxyCodeLine{245         \}}
+\DoxyCodeLine{246     \}}
+\DoxyCodeLine{247     }
+\DoxyCodeLine{248     \textcolor{keywordtype}{void} clear\_fifo(uint8\_t adres)\{}
+\DoxyCodeLine{249         uint8\_t sendData[64];}
+\DoxyCodeLine{250         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < 64; i++)\{}
+\DoxyCodeLine{251             sendData[i] = adres;}
+\DoxyCodeLine{252         \}}
+\DoxyCodeLine{253         write(sendData, 64);}
+\DoxyCodeLine{254     \}}
+\DoxyCodeLine{255     }
+\DoxyCodeLine{256     \textcolor{keywordtype}{void} write\_card(uint8\_t sendData[])\{}
+\DoxyCodeLine{257         writeRegister(CommandReg, \mbox{\hyperlink{class_m_f_r_c522_aa0a33c3059b58a75fc8c1ff8201601bb}{cmdIdle}}); \textcolor{comment}{//stop any active command}}
+\DoxyCodeLine{258         writeRegister(\mbox{\hyperlink{class_m_f_r_c522_a5bb072accfc1422669f46aec2daddc08}{ComIrqReg}}, 0x7F); \textcolor{comment}{//the interrupt request bits.}}
+\DoxyCodeLine{259         }
+\DoxyCodeLine{260         write(sendData, 64);}
+\DoxyCodeLine{261         \textcolor{comment}{//execute command}}
+\DoxyCodeLine{262         writeRegister(CommandReg, 0x04);}
+\DoxyCodeLine{263     \}}
+\DoxyCodeLine{264     }
+\DoxyCodeLine{265     \textcolor{keywordtype}{void} read\_card()\{}
+\DoxyCodeLine{266         writeRegister(CommandReg, \mbox{\hyperlink{class_m_f_r_c522_aa0a33c3059b58a75fc8c1ff8201601bb}{cmdIdle}}); \textcolor{comment}{//stop any active command}}
+\DoxyCodeLine{267         writeRegister(\mbox{\hyperlink{class_m_f_r_c522_a5bb072accfc1422669f46aec2daddc08}{ComIrqReg}}, 0x7F); \textcolor{comment}{//the interrupt request bits.}}
+\DoxyCodeLine{268         \textcolor{comment}{//execute command}}
+\DoxyCodeLine{269         writeRegister(CommandReg, 0x08);}
+\DoxyCodeLine{270         hwlib::wait\_ms(500);}
+\DoxyCodeLine{271         writeRegister(CommandReg, 0x00);}
+\DoxyCodeLine{272     \}}
+\DoxyCodeLine{273 \};}
+\DoxyCodeLine{274 \textcolor{preprocessor}{\#endif      }\textcolor{comment}{//MFRC522\_HPP}}
+
+\end{DoxyCode}

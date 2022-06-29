@@ -1,0 +1,40 @@
+\hypertarget{spi_setup_8hpp_source}{}\doxysection{spi\+Setup.\+hpp}
+\mbox{\hyperlink{spi_setup_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{2 \textcolor{comment}{// (C) Copyright Bas van der Geer 2019.}}
+\DoxyCodeLine{3 \textcolor{comment}{// Distributed under the Boost Software License, Version 1.0. (See}}
+\DoxyCodeLine{4 \textcolor{comment}{// accompanying file LICENSE\_1\_0.txt or copy at}}
+\DoxyCodeLine{5 \textcolor{comment}{// http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{6 \textcolor{comment}{// -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#ifndef SPISETUP\_HPP}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#define SPISETUP\_HPP}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}hwlib.hpp"{}}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{14 }
+\DoxyCodeLine{21 \textcolor{keyword}{class }\mbox{\hyperlink{classspi_setup}{spiSetup}} : \textcolor{keyword}{public} hwlib::spi\_bus\_bit\_banged\_sclk\_mosi\_miso \{}
+\DoxyCodeLine{22 \textcolor{keyword}{private}:}
+\DoxyCodeLine{26     \textcolor{keyword}{const} uint8\_t READ\_MASK = 0x80; \textcolor{comment}{// 1000 0000    mask to get right value of the register byte to read it}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{31     \textcolor{keyword}{const} uint8\_t WRITE\_MASK = 0x7E; \textcolor{comment}{// 0111 1110   mask to get right value of the register byte to write to }}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{37     uint8\_t getReadByte(\textcolor{keyword}{const} uint8\_t regAddress);}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{43     uint8\_t getWriteByte(\textcolor{keyword}{const} uint8\_t regAdress);}
+\DoxyCodeLine{44 \textcolor{keyword}{public}:}
+\DoxyCodeLine{52     \mbox{\hyperlink{classspi_setup_a4acc1a08e4a3ce57cb145b2fec525325}{spiSetup}}(hwlib::pin\_out \&scl, hwlib::pin\_out \&mosi, hwlib::pin\_in \&miso);}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{59     uint8\_t \mbox{\hyperlink{classspi_setup_a8c4709981af56eb9886f57a58fc15349}{getByteFromRegister}}(\textcolor{keyword}{const} uint8\_t regAddress, hwlib::pin\_out\& slaveSel);}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{69     \textcolor{keywordtype}{void} \mbox{\hyperlink{classspi_setup_a2dd360ed8351469fe8dbb78d25a73e1b}{getBytesFromRegister}}(\textcolor{keyword}{const} uint8\_t regAddress, uint8\_t data[], uint8\_t amountOfBytes, hwlib::pin\_out\& slaveSel);}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{77     \textcolor{keywordtype}{void} \mbox{\hyperlink{classspi_setup_a5b745f869799cc7f6aacaef8f6f74f8d}{writeByteInRegister}}(\textcolor{keyword}{const} uint8\_t regAddress, uint8\_t writeByte, hwlib::pin\_out\& slaveSel);}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{86     \textcolor{keywordtype}{void} \mbox{\hyperlink{classspi_setup_ab95cbedeebaf5d86bd7a927226bb67e6}{writeBytesinRegister}}(\textcolor{keyword}{const} uint8\_t regAddress, uint8\_t writeBytes[], \textcolor{keywordtype}{int} amountOfBytes, hwlib::pin\_out\& slaveSel);}
+\DoxyCodeLine{87 \};}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//SPISETUP\_HPP}}
+
+\end{DoxyCode}

@@ -1,0 +1,139 @@
+\hypertarget{_d_s1307_8hpp_source}{}\doxysection{C\+:/\+HWLib/v1oopc-\/examples/\+IPASS/\+DS1307.hpp}
+\mbox{\hyperlink{_d_s1307_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//Copyright David Hulsebosch 2022.}}
+\DoxyCodeLine{2 \textcolor{comment}{// Distributed under the Boost Software License, Version 1.0.}}
+\DoxyCodeLine{3 \textcolor{comment}{//(See accompanying file LICENSE\_1\_0.txt or copy at}}
+\DoxyCodeLine{4 \textcolor{comment}{//https://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#ifndef DS1307\_HPP}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#define DS1307\_HPP}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <hwlib.hpp>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{11 }
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{keyword}{class }\mbox{\hyperlink{class_d_s1307}{DS1307}}\{}
+\DoxyCodeLine{19 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{24     hwlib::i2c\_bus\_bit\_banged\_scl\_sda \& \mbox{\hyperlink{class_d_s1307_afceb9da8cff0f16dbabe82bc13d36fd5}{bus}}; }
+\DoxyCodeLine{25     uint\_fast8\_t \mbox{\hyperlink{class_d_s1307_a5caa5dae84441444024a463bf71af974}{adres\_secondes}} = 0x00; }
+\DoxyCodeLine{26     uint\_fast8\_t \mbox{\hyperlink{class_d_s1307_ac6c92e8ce0b121b911a1b25f23794470}{adres\_minuten}} = 0x01; }
+\DoxyCodeLine{27     uint\_fast8\_t \mbox{\hyperlink{class_d_s1307_aab9688953a91c7804f1a23a66dcd259e}{adres\_uren}} = 0x02; }
+\DoxyCodeLine{28     uint\_fast8\_t \mbox{\hyperlink{class_d_s1307_a3643be34d07d5b37713ce63314ca94c8}{adres\_dagen\_week}} = 0x03; }
+\DoxyCodeLine{29     uint\_fast8\_t \mbox{\hyperlink{class_d_s1307_ab4eecdcd97379d4689b3f910280fecc7}{adres\_dagen\_getal}} = 0x04; }
+\DoxyCodeLine{30     uint\_fast8\_t \mbox{\hyperlink{class_d_s1307_a7ad09e5842d33f8242e541945928375c}{adres\_maanden}} = 0x05; }
+\DoxyCodeLine{31     uint\_fast8\_t \mbox{\hyperlink{class_d_s1307_a9c73f2e49b1c41a7cfcddd7b05113d51}{adres\_jaren}} = 0x06; }
+\DoxyCodeLine{32     uint\_fast8\_t \mbox{\hyperlink{class_d_s1307_aea3d88829a0191398fb333312e387374}{adres\_control}} = 0x07; }
+\DoxyCodeLine{33     uint\_fast8\_t \mbox{\hyperlink{class_d_s1307_a9710880f79e90b4556a77599801db25a}{adres}} = 0x68; }
+\DoxyCodeLine{34     }
+\DoxyCodeLine{35     uint8\_t \mbox{\hyperlink{class_d_s1307_a24a8a8cef5156f1a80c47f0a2453b042}{secondes}};}
+\DoxyCodeLine{36     uint8\_t minuten;}
+\DoxyCodeLine{37     uint8\_t uren;}
+\DoxyCodeLine{38     \textcolor{keywordtype}{int} uren\_modus; }
+\DoxyCodeLine{39     uint8\_t \mbox{\hyperlink{class_d_s1307_a9f6d2d2a8ddae75783b8d61283a0a2cc}{dag\_nummer}};}
+\DoxyCodeLine{40     uint8\_t dag\_getal;}
+\DoxyCodeLine{41     uint8\_t maand;}
+\DoxyCodeLine{42     uint8\_t jaren;}
+\DoxyCodeLine{43     }
+\DoxyCodeLine{48     uint8\_t \mbox{\hyperlink{class_d_s1307_a5eea2b5c2a1fd1ebeca0123136178028}{dec2bcd}}(uint8\_t getal)\{}
+\DoxyCodeLine{49         \textcolor{keywordflow}{return} ((getal/10 * 16) + (getal \% 10));}
+\DoxyCodeLine{50     \}}
+\DoxyCodeLine{51     }
+\DoxyCodeLine{56     uint8\_t \mbox{\hyperlink{class_d_s1307_aad7dad50c803f62e141ae49be06ca278}{bcd2dec}}(uint8\_t getal)\{}
+\DoxyCodeLine{57         \textcolor{keywordflow}{return} ((getal/16 * 10) + (getal \% 16));}
+\DoxyCodeLine{58     \}}
+\DoxyCodeLine{59     }
+\DoxyCodeLine{64     uint8\_t \mbox{\hyperlink{class_d_s1307_ad69bd5754b1f69e10c031974e90db0f4}{lezen\_secondes}}()\{}
+\DoxyCodeLine{65         \{ hwlib::i2c\_write\_transaction wtrans = ((hwlib::i2c\_bus*)(\&\mbox{\hyperlink{class_d_s1307_afceb9da8cff0f16dbabe82bc13d36fd5}{bus}}))-\/>write(\mbox{\hyperlink{class_d_s1307_a9710880f79e90b4556a77599801db25a}{adres}});}
+\DoxyCodeLine{66             wtrans.write(\mbox{\hyperlink{class_d_s1307_a5caa5dae84441444024a463bf71af974}{adres\_secondes}});\}}
+\DoxyCodeLine{67         \{ hwlib::i2c\_read\_transaction rtrans = ((hwlib::i2c\_bus*)(\&\mbox{\hyperlink{class_d_s1307_afceb9da8cff0f16dbabe82bc13d36fd5}{bus}}))-\/>read(\mbox{\hyperlink{class_d_s1307_a9710880f79e90b4556a77599801db25a}{adres}});}
+\DoxyCodeLine{68             rtrans.read(\mbox{\hyperlink{class_d_s1307_a24a8a8cef5156f1a80c47f0a2453b042}{secondes}});\}}
+\DoxyCodeLine{69         \textcolor{keywordflow}{if} ((\mbox{\hyperlink{class_d_s1307_a24a8a8cef5156f1a80c47f0a2453b042}{secondes}} >> 7 \& 0x01)==1)\{ \textcolor{comment}{//als oscilator uitstaat kan je nog steeds de secondes aflezen door het meest linker bit op 0 te zetten}}
+\DoxyCodeLine{70             \mbox{\hyperlink{class_d_s1307_a24a8a8cef5156f1a80c47f0a2453b042}{secondes}} = \mbox{\hyperlink{class_d_s1307_a24a8a8cef5156f1a80c47f0a2453b042}{secondes}} \string^ 0x80; \textcolor{comment}{//meest linker bit op 0 te zetten}}
+\DoxyCodeLine{71         \}}
+\DoxyCodeLine{72         \textcolor{keywordflow}{return} \mbox{\hyperlink{class_d_s1307_aad7dad50c803f62e141ae49be06ca278}{bcd2dec}}(\mbox{\hyperlink{class_d_s1307_a24a8a8cef5156f1a80c47f0a2453b042}{secondes}});}
+\DoxyCodeLine{73     \}}
+\DoxyCodeLine{74     }
+\DoxyCodeLine{79     uint8\_t \mbox{\hyperlink{class_d_s1307_a2c8555e89c96f51c1b0d9bc67531baeb}{lezen\_minuten}}()\{}
+\DoxyCodeLine{80         \{ hwlib::i2c\_write\_transaction wtrans = ((hwlib::i2c\_bus*)(\&\mbox{\hyperlink{class_d_s1307_afceb9da8cff0f16dbabe82bc13d36fd5}{bus}}))-\/>write(\mbox{\hyperlink{class_d_s1307_a9710880f79e90b4556a77599801db25a}{adres}});}
+\DoxyCodeLine{81             wtrans.write(\mbox{\hyperlink{class_d_s1307_ac6c92e8ce0b121b911a1b25f23794470}{adres\_minuten}});\}}
+\DoxyCodeLine{82         \{ hwlib::i2c\_read\_transaction rtrans = ((hwlib::i2c\_bus*)(\&\mbox{\hyperlink{class_d_s1307_afceb9da8cff0f16dbabe82bc13d36fd5}{bus}}))-\/>read(\mbox{\hyperlink{class_d_s1307_a9710880f79e90b4556a77599801db25a}{adres}});}
+\DoxyCodeLine{83             rtrans.read(minuten);\}}
+\DoxyCodeLine{84         \textcolor{keywordflow}{return} \mbox{\hyperlink{class_d_s1307_aad7dad50c803f62e141ae49be06ca278}{bcd2dec}}(minuten);}
+\DoxyCodeLine{85     \}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{91     uint8\_t \mbox{\hyperlink{class_d_s1307_a7e4dfb0d22c5b78b26ee88d56c717e13}{lezen\_uren}}()\{}
+\DoxyCodeLine{92         \{ hwlib::i2c\_write\_transaction wtrans = ((hwlib::i2c\_bus*)(\&\mbox{\hyperlink{class_d_s1307_afceb9da8cff0f16dbabe82bc13d36fd5}{bus}}))-\/>write(\mbox{\hyperlink{class_d_s1307_a9710880f79e90b4556a77599801db25a}{adres}});}
+\DoxyCodeLine{93             wtrans.write(\mbox{\hyperlink{class_d_s1307_aab9688953a91c7804f1a23a66dcd259e}{adres\_uren}});\}}
+\DoxyCodeLine{94         \{ hwlib::i2c\_read\_transaction rtrans = ((hwlib::i2c\_bus*)(\&\mbox{\hyperlink{class_d_s1307_afceb9da8cff0f16dbabe82bc13d36fd5}{bus}}))-\/>read(\mbox{\hyperlink{class_d_s1307_a9710880f79e90b4556a77599801db25a}{adres}});}
+\DoxyCodeLine{95             rtrans.read(uren);\}}
+\DoxyCodeLine{96         \textcolor{keywordflow}{if} ((uren >> 6 \& 0x01)==1)\{ \textcolor{comment}{//controleren of de uren in een 12 uurs format zit en dus of bit 5 AM/PM is}}
+\DoxyCodeLine{97             \textcolor{keywordflow}{if} ((uren >> 5 \& 0x01)==1)\{ \textcolor{comment}{//controleren of het PM is}}
+\DoxyCodeLine{98                 uren\_modus = 1;}
+\DoxyCodeLine{99                 uren = uren \string^ 0x60;}
+\DoxyCodeLine{100             \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{101                 uren\_modus = 0;}
+\DoxyCodeLine{102                 uren = uren \string^ 0x40;}
+\DoxyCodeLine{103             \}}
+\DoxyCodeLine{104             }
+\DoxyCodeLine{105         \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{106             uren\_modus = 2;}
+\DoxyCodeLine{107         \}}
+\DoxyCodeLine{108         }
+\DoxyCodeLine{109         \textcolor{keywordflow}{return} \mbox{\hyperlink{class_d_s1307_aad7dad50c803f62e141ae49be06ca278}{bcd2dec}}(uren);}
+\DoxyCodeLine{110     \}}
+\DoxyCodeLine{111     }
+\DoxyCodeLine{116     uint8\_t \mbox{\hyperlink{class_d_s1307_a74d36f2144e29308055a270ab80f9eb8}{lezen\_dagnaam}}()\{}
+\DoxyCodeLine{117         \textcolor{comment}{//std::string dagnaam;}}
+\DoxyCodeLine{118         \{ hwlib::i2c\_write\_transaction wtrans = ((hwlib::i2c\_bus*)(\&\mbox{\hyperlink{class_d_s1307_afceb9da8cff0f16dbabe82bc13d36fd5}{bus}}))-\/>write(\mbox{\hyperlink{class_d_s1307_a9710880f79e90b4556a77599801db25a}{adres}});}
+\DoxyCodeLine{119         wtrans.write(\mbox{\hyperlink{class_d_s1307_a3643be34d07d5b37713ce63314ca94c8}{adres\_dagen\_week}});\}}
+\DoxyCodeLine{120         \{ hwlib::i2c\_read\_transaction rtrans = ((hwlib::i2c\_bus*)(\&\mbox{\hyperlink{class_d_s1307_afceb9da8cff0f16dbabe82bc13d36fd5}{bus}}))-\/>read(\mbox{\hyperlink{class_d_s1307_a9710880f79e90b4556a77599801db25a}{adres}});}
+\DoxyCodeLine{121             rtrans.read(\mbox{\hyperlink{class_d_s1307_a9f6d2d2a8ddae75783b8d61283a0a2cc}{dag\_nummer}});\}}
+\DoxyCodeLine{122         \textcolor{keywordflow}{return} \mbox{\hyperlink{class_d_s1307_a9f6d2d2a8ddae75783b8d61283a0a2cc}{dag\_nummer}};}
+\DoxyCodeLine{123     \}}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{129     uint8\_t \mbox{\hyperlink{class_d_s1307_ab4ef4a7802acec2776a5fb4d53088702}{lezen\_daggetal}}()\{}
+\DoxyCodeLine{130         \{ hwlib::i2c\_write\_transaction wtrans = ((hwlib::i2c\_bus*)(\&\mbox{\hyperlink{class_d_s1307_afceb9da8cff0f16dbabe82bc13d36fd5}{bus}}))-\/>write(\mbox{\hyperlink{class_d_s1307_a9710880f79e90b4556a77599801db25a}{adres}});}
+\DoxyCodeLine{131             wtrans.write(\mbox{\hyperlink{class_d_s1307_ab4eecdcd97379d4689b3f910280fecc7}{adres\_dagen\_getal}});\}}
+\DoxyCodeLine{132         \{ hwlib::i2c\_read\_transaction rtrans = ((hwlib::i2c\_bus*)(\&\mbox{\hyperlink{class_d_s1307_afceb9da8cff0f16dbabe82bc13d36fd5}{bus}}))-\/>read(\mbox{\hyperlink{class_d_s1307_a9710880f79e90b4556a77599801db25a}{adres}});}
+\DoxyCodeLine{133             rtrans.read(dag\_getal);\}}
+\DoxyCodeLine{134         \textcolor{keywordflow}{return} \mbox{\hyperlink{class_d_s1307_aad7dad50c803f62e141ae49be06ca278}{bcd2dec}}(dag\_getal);}
+\DoxyCodeLine{135     \}}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{141     uint8\_t \mbox{\hyperlink{class_d_s1307_ab0b8e36fa35965d79de07019cbcea870}{lezen\_maand}}()\{}
+\DoxyCodeLine{142         \{ hwlib::i2c\_write\_transaction wtrans = ((hwlib::i2c\_bus*)(\&\mbox{\hyperlink{class_d_s1307_afceb9da8cff0f16dbabe82bc13d36fd5}{bus}}))-\/>write(\mbox{\hyperlink{class_d_s1307_a9710880f79e90b4556a77599801db25a}{adres}});}
+\DoxyCodeLine{143             wtrans.write(\mbox{\hyperlink{class_d_s1307_a7ad09e5842d33f8242e541945928375c}{adres\_maanden}});\}}
+\DoxyCodeLine{144         \{ hwlib::i2c\_read\_transaction rtrans = ((hwlib::i2c\_bus*)(\&\mbox{\hyperlink{class_d_s1307_afceb9da8cff0f16dbabe82bc13d36fd5}{bus}}))-\/>read(\mbox{\hyperlink{class_d_s1307_a9710880f79e90b4556a77599801db25a}{adres}});}
+\DoxyCodeLine{145             rtrans.read(maand);\}}
+\DoxyCodeLine{146         \textcolor{keywordflow}{return} \mbox{\hyperlink{class_d_s1307_aad7dad50c803f62e141ae49be06ca278}{bcd2dec}}(maand);}
+\DoxyCodeLine{147     \}}
+\DoxyCodeLine{148     }
+\DoxyCodeLine{154     uint8\_t \mbox{\hyperlink{class_d_s1307_a06f431ea8fd44fdc726d1e3ed9358753}{lezen\_jaar}}()\{}
+\DoxyCodeLine{155         \{ hwlib::i2c\_write\_transaction wtrans = ((hwlib::i2c\_bus*)(\&\mbox{\hyperlink{class_d_s1307_afceb9da8cff0f16dbabe82bc13d36fd5}{bus}}))-\/>write(\mbox{\hyperlink{class_d_s1307_a9710880f79e90b4556a77599801db25a}{adres}});}
+\DoxyCodeLine{156             wtrans.write(\mbox{\hyperlink{class_d_s1307_a9c73f2e49b1c41a7cfcddd7b05113d51}{adres\_jaren}});\}}
+\DoxyCodeLine{157         \{ hwlib::i2c\_read\_transaction rtrans = ((hwlib::i2c\_bus*)(\&\mbox{\hyperlink{class_d_s1307_afceb9da8cff0f16dbabe82bc13d36fd5}{bus}}))-\/>read(\mbox{\hyperlink{class_d_s1307_a9710880f79e90b4556a77599801db25a}{adres}});}
+\DoxyCodeLine{158             rtrans.read(jaren);\}}
+\DoxyCodeLine{159         \textcolor{keywordflow}{return} \mbox{\hyperlink{class_d_s1307_aad7dad50c803f62e141ae49be06ca278}{bcd2dec}}(jaren);}
+\DoxyCodeLine{160     \}}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163 \textcolor{keyword}{public}:}
+\DoxyCodeLine{168     \mbox{\hyperlink{class_d_s1307_ae8339f627105a11f27aaa22bd74400c7}{DS1307}}(hwlib::i2c\_bus\_bit\_banged\_scl\_sda \& \mbox{\hyperlink{class_d_s1307_afceb9da8cff0f16dbabe82bc13d36fd5}{bus}});}
+\DoxyCodeLine{169     }
+\DoxyCodeLine{175     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_d_s1307_a94c88747a17d2b3f4eca163faa816dbe}{uitlezen}}();}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{182     uint8\_t * \mbox{\hyperlink{class_d_s1307_acfc0c12d52fb1fb8fc0fb31383977c7f}{uitlezen\_bytes}}();}
+\DoxyCodeLine{183     }
+\DoxyCodeLine{188     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_d_s1307_a5a1f2459a8ea4315fb9ab18fa54e227f}{aanzetten\_oscilator}}();}
+\DoxyCodeLine{189     }
+\DoxyCodeLine{194     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_d_s1307_ae2777af16fd728279491a46b488409bb}{uitzetten\_oscilator}}();}
+\DoxyCodeLine{195     }
+\DoxyCodeLine{201     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_d_s1307_a7661d0356834d1b66ccfdc54d8ea5e52}{control}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \& output\_control, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \& square\_wave, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \& rate\_select);}
+\DoxyCodeLine{202     }
+\DoxyCodeLine{207     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_d_s1307_a83b066c640467622011573b0b15aa25d}{toggle\_12\_24}}();}
+\DoxyCodeLine{208     }
+\DoxyCodeLine{214     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_d_s1307_aedb1bb6e229bc7fbee6fd850f890da05}{set\_datetime}}(\textcolor{keywordtype}{int} seconde\_inv, \textcolor{keywordtype}{int} minuut\_inv, \textcolor{keywordtype}{int} uur\_inv, \textcolor{keyword}{const} \textcolor{keywordtype}{int} weekdag\_inv, \textcolor{keyword}{const} \textcolor{keywordtype}{int} dag\_inv, \textcolor{keyword}{const} \textcolor{keywordtype}{int} maand\_inv, \textcolor{keywordtype}{int} jaar\_inv);}
+\DoxyCodeLine{215 \};}
+\DoxyCodeLine{216 }
+\DoxyCodeLine{217 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,358 @@
+\hypertarget{class_d_s1307}{}\doxysection{DS1307 Class Reference}
+\label{class_d_s1307}\index{DS1307@{DS1307}}
+
+
+Library for the \mbox{\hyperlink{class_d_s1307}{DS1307}} Real Time Clock.  
+
+
+
+
+{\ttfamily \#include $<$DS1307.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_d_s1307_ae8339f627105a11f27aaa22bd74400c7}{DS1307}} (hwlib\+::i2c\+\_\+bus\+\_\+bit\+\_\+banged\+\_\+scl\+\_\+sda \&\mbox{\hyperlink{class_d_s1307_afceb9da8cff0f16dbabe82bc13d36fd5}{bus}})
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Constructor \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_d_s1307_a94c88747a17d2b3f4eca163faa816dbe}{uitlezen}} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Read date and time in string \end{DoxyCompactList}\item 
+uint8\+\_\+t $\ast$ \mbox{\hyperlink{class_d_s1307_acfc0c12d52fb1fb8fc0fb31383977c7f}{uitlezen\+\_\+bytes}} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Read date and time in array \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_d_s1307_a5a1f2459a8ea4315fb9ab18fa54e227f}{aanzetten\+\_\+oscilator}} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Fuction to turn on the oscilator \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_d_s1307_ae2777af16fd728279491a46b488409bb}{uitzetten\+\_\+oscilator}} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Fuction to turn off the oscilator \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_d_s1307_a7661d0356834d1b66ccfdc54d8ea5e52}{control}} (const int \&output\+\_\+control, const int \&square\+\_\+wave, const int \&rate\+\_\+select)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Fuction to control the SQW/out pin \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_d_s1307_a83b066c640467622011573b0b15aa25d}{toggle\+\_\+12\+\_\+24}} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Fuction to switch between 12 or 24 hour format \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_d_s1307_aedb1bb6e229bc7fbee6fd850f890da05}{set\+\_\+datetime}} (int seconde\+\_\+inv, int minuut\+\_\+inv, int uur\+\_\+inv, const int weekdag\+\_\+inv, const int dag\+\_\+inv, const int maand\+\_\+inv, int jaar\+\_\+inv)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Sets date and time \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_d_s1307_a5eea2b5c2a1fd1ebeca0123136178028}{dec2bcd}} (uint8\+\_\+t getal)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Decimal to BCD \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{class_d_s1307_aad7dad50c803f62e141ae49be06ca278}{bcd2dec}} (uint8\+\_\+t getal)
+\begin{DoxyCompactList}\small\item\em ~\newline
+ BCD to decimal \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{class_d_s1307_ad69bd5754b1f69e10c031974e90db0f4}{lezen\+\_\+secondes}} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Read seconds \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{class_d_s1307_a2c8555e89c96f51c1b0d9bc67531baeb}{lezen\+\_\+minuten}} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Read minutes \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{class_d_s1307_a7e4dfb0d22c5b78b26ee88d56c717e13}{lezen\+\_\+uren}} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Read hours \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{class_d_s1307_a74d36f2144e29308055a270ab80f9eb8}{lezen\+\_\+dagnaam}} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Read dayname \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{class_d_s1307_ab4ef4a7802acec2776a5fb4d53088702}{lezen\+\_\+daggetal}} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Read day number \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{class_d_s1307_ab0b8e36fa35965d79de07019cbcea870}{lezen\+\_\+maand}} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Read month number \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{class_d_s1307_a06f431ea8fd44fdc726d1e3ed9358753}{lezen\+\_\+jaar}} ()
+\begin{DoxyCompactList}\small\item\em ~\newline
+ Read year number \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+hwlib\+::i2c\+\_\+bus\+\_\+bit\+\_\+banged\+\_\+scl\+\_\+sda \& \mbox{\hyperlink{class_d_s1307_afceb9da8cff0f16dbabe82bc13d36fd5}{bus}}
+\item 
+\mbox{\Hypertarget{class_d_s1307_a5caa5dae84441444024a463bf71af974}\label{class_d_s1307_a5caa5dae84441444024a463bf71af974}} 
+uint\+\_\+fast8\+\_\+t {\bfseries adres\+\_\+secondes} = 0x00
+\begin{DoxyCompactList}\small\item\em Software i2c bus using hwlib. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_d_s1307_ac6c92e8ce0b121b911a1b25f23794470}\label{class_d_s1307_ac6c92e8ce0b121b911a1b25f23794470}} 
+uint\+\_\+fast8\+\_\+t {\bfseries adres\+\_\+minuten} = 0x01
+\begin{DoxyCompactList}\small\item\em Register address for seconds. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_d_s1307_aab9688953a91c7804f1a23a66dcd259e}\label{class_d_s1307_aab9688953a91c7804f1a23a66dcd259e}} 
+uint\+\_\+fast8\+\_\+t {\bfseries adres\+\_\+uren} = 0x02
+\begin{DoxyCompactList}\small\item\em Register address for minutes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_d_s1307_a3643be34d07d5b37713ce63314ca94c8}\label{class_d_s1307_a3643be34d07d5b37713ce63314ca94c8}} 
+uint\+\_\+fast8\+\_\+t {\bfseries adres\+\_\+dagen\+\_\+week} = 0x03
+\begin{DoxyCompactList}\small\item\em Register address for hours. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_d_s1307_ab4eecdcd97379d4689b3f910280fecc7}\label{class_d_s1307_ab4eecdcd97379d4689b3f910280fecc7}} 
+uint\+\_\+fast8\+\_\+t {\bfseries adres\+\_\+dagen\+\_\+getal} = 0x04
+\begin{DoxyCompactList}\small\item\em Register address for daynames. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_d_s1307_a7ad09e5842d33f8242e541945928375c}\label{class_d_s1307_a7ad09e5842d33f8242e541945928375c}} 
+uint\+\_\+fast8\+\_\+t {\bfseries adres\+\_\+maanden} = 0x05
+\begin{DoxyCompactList}\small\item\em Register address for daynumbers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_d_s1307_a9c73f2e49b1c41a7cfcddd7b05113d51}\label{class_d_s1307_a9c73f2e49b1c41a7cfcddd7b05113d51}} 
+uint\+\_\+fast8\+\_\+t {\bfseries adres\+\_\+jaren} = 0x06
+\begin{DoxyCompactList}\small\item\em Register address for months. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_d_s1307_aea3d88829a0191398fb333312e387374}\label{class_d_s1307_aea3d88829a0191398fb333312e387374}} 
+uint\+\_\+fast8\+\_\+t {\bfseries adres\+\_\+control} = 0x07
+\begin{DoxyCompactList}\small\item\em Register address for years. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_d_s1307_a9710880f79e90b4556a77599801db25a}\label{class_d_s1307_a9710880f79e90b4556a77599801db25a}} 
+uint\+\_\+fast8\+\_\+t {\bfseries adres} = 0x68
+\begin{DoxyCompactList}\small\item\em Register address for controlling the SQW/\+OUT pin. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{class_d_s1307_a24a8a8cef5156f1a80c47f0a2453b042}{secondes}}
+\begin{DoxyCompactList}\small\item\em 7 bit address \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_d_s1307_a875af70cd797c57c5fa6bea02da09f7a}\label{class_d_s1307_a875af70cd797c57c5fa6bea02da09f7a}} 
+uint8\+\_\+t {\bfseries minuten}
+\item 
+\mbox{\Hypertarget{class_d_s1307_a15b6194efe9a440eb5a5b4754b29e2e8}\label{class_d_s1307_a15b6194efe9a440eb5a5b4754b29e2e8}} 
+uint8\+\_\+t {\bfseries uren}
+\item 
+\mbox{\Hypertarget{class_d_s1307_a8dcfee09da17b026c5b6a10d5d461c42}\label{class_d_s1307_a8dcfee09da17b026c5b6a10d5d461c42}} 
+int {\bfseries uren\+\_\+modus}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_d_s1307_a9f6d2d2a8ddae75783b8d61283a0a2cc}{dag\+\_\+nummer}}
+\begin{DoxyCompactList}\small\item\em Stores hour mode. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_d_s1307_a0d130a3c7e1e97af1f715baaeedc04aa}\label{class_d_s1307_a0d130a3c7e1e97af1f715baaeedc04aa}} 
+uint8\+\_\+t {\bfseries dag\+\_\+getal}
+\item 
+\mbox{\Hypertarget{class_d_s1307_a6807594d38759959914640bffbe59661}\label{class_d_s1307_a6807594d38759959914640bffbe59661}} 
+uint8\+\_\+t {\bfseries maand}
+\item 
+\mbox{\Hypertarget{class_d_s1307_aa4b1689b94debe575c9825e63706141f}\label{class_d_s1307_aa4b1689b94debe575c9825e63706141f}} 
+uint8\+\_\+t {\bfseries jaren}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Library for the \mbox{\hyperlink{class_d_s1307}{DS1307}} Real Time Clock. 
+
+This is the library for controlling and reading the \mbox{\hyperlink{class_d_s1307}{DS1307}} RTC (Real Time Clock). It uses the library hwlib made by (c) Wouter van Ooijen (\href{mailto:wouter@voti.nl}{\texttt{ wouter@voti.\+nl}}) 2017. Without hwlib this library does not work. ~\newline
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_d_s1307_ae8339f627105a11f27aaa22bd74400c7}\label{class_d_s1307_ae8339f627105a11f27aaa22bd74400c7}} 
+\index{DS1307@{DS1307}!DS1307@{DS1307}}
+\index{DS1307@{DS1307}!DS1307@{DS1307}}
+\doxysubsubsection{\texorpdfstring{DS1307()}{DS1307()}}
+{\footnotesize\ttfamily DS1307\+::\+DS1307 (\begin{DoxyParamCaption}\item[{hwlib\+::i2c\+\_\+bus\+\_\+bit\+\_\+banged\+\_\+scl\+\_\+sda \&}]{bus }\end{DoxyParamCaption})}
+
+
+
+~\newline
+ Constructor 
+
+Constructs the class. It needs an i2c\+\_\+bus\+\_\+bit\+\_\+banged from the library hwlib in order to work. ~\newline
+ 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_d_s1307_a5a1f2459a8ea4315fb9ab18fa54e227f}\label{class_d_s1307_a5a1f2459a8ea4315fb9ab18fa54e227f}} 
+\index{DS1307@{DS1307}!aanzetten\_oscilator@{aanzetten\_oscilator}}
+\index{aanzetten\_oscilator@{aanzetten\_oscilator}!DS1307@{DS1307}}
+\doxysubsubsection{\texorpdfstring{aanzetten\_oscilator()}{aanzetten\_oscilator()}}
+{\footnotesize\ttfamily void DS1307\+::aanzetten\+\_\+oscilator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+~\newline
+ Fuction to turn on the oscilator 
+
+Turns on the oscilator, if it is already on then it gives a message through the terminal \mbox{\Hypertarget{class_d_s1307_aad7dad50c803f62e141ae49be06ca278}\label{class_d_s1307_aad7dad50c803f62e141ae49be06ca278}} 
+\index{DS1307@{DS1307}!bcd2dec@{bcd2dec}}
+\index{bcd2dec@{bcd2dec}!DS1307@{DS1307}}
+\doxysubsubsection{\texorpdfstring{bcd2dec()}{bcd2dec()}}
+{\footnotesize\ttfamily uint8\+\_\+t DS1307\+::bcd2dec (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{getal }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+~\newline
+ BCD to decimal 
+
+This function converts from the binary-\/coded decimal (BCD) format to decimal integers \mbox{\Hypertarget{class_d_s1307_a7661d0356834d1b66ccfdc54d8ea5e52}\label{class_d_s1307_a7661d0356834d1b66ccfdc54d8ea5e52}} 
+\index{DS1307@{DS1307}!control@{control}}
+\index{control@{control}!DS1307@{DS1307}}
+\doxysubsubsection{\texorpdfstring{control()}{control()}}
+{\footnotesize\ttfamily void DS1307\+::control (\begin{DoxyParamCaption}\item[{const int \&}]{output\+\_\+control,  }\item[{const int \&}]{square\+\_\+wave,  }\item[{const int \&}]{rate\+\_\+select }\end{DoxyParamCaption})}
+
+
+
+~\newline
+ Fuction to control the SQW/out pin 
+
+Controls the SQW/out pin. The parameter output\+\_\+control controls the pin when square\+\_\+wave is disabled. The parameter square\+\_\+wave turns the oscilator output on or off. The rate\+\_\+select parameter controls the rate. If rate\+\_\+select is 0 then the rate is 1 Hz; if it is 1 then the rate is 4.\+096 k\+Hz; 2 equals 8.\+192 k\+Hz and 3 equals 32.\+768 k\+Hz. ~\newline
+ \mbox{\Hypertarget{class_d_s1307_a5eea2b5c2a1fd1ebeca0123136178028}\label{class_d_s1307_a5eea2b5c2a1fd1ebeca0123136178028}} 
+\index{DS1307@{DS1307}!dec2bcd@{dec2bcd}}
+\index{dec2bcd@{dec2bcd}!DS1307@{DS1307}}
+\doxysubsubsection{\texorpdfstring{dec2bcd()}{dec2bcd()}}
+{\footnotesize\ttfamily uint8\+\_\+t DS1307\+::dec2bcd (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{getal }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+~\newline
+ Decimal to BCD 
+
+This function converts decimal integers to the binary-\/coded decimal (BCD) format \mbox{\Hypertarget{class_d_s1307_ab4ef4a7802acec2776a5fb4d53088702}\label{class_d_s1307_ab4ef4a7802acec2776a5fb4d53088702}} 
+\index{DS1307@{DS1307}!lezen\_daggetal@{lezen\_daggetal}}
+\index{lezen\_daggetal@{lezen\_daggetal}!DS1307@{DS1307}}
+\doxysubsubsection{\texorpdfstring{lezen\_daggetal()}{lezen\_daggetal()}}
+{\footnotesize\ttfamily uint8\+\_\+t DS1307\+::lezen\+\_\+daggetal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+~\newline
+ Read day number 
+
+This function reads the day number and returns an 8 bit long unsigned integer. Range from 1 to 31 \mbox{\Hypertarget{class_d_s1307_a74d36f2144e29308055a270ab80f9eb8}\label{class_d_s1307_a74d36f2144e29308055a270ab80f9eb8}} 
+\index{DS1307@{DS1307}!lezen\_dagnaam@{lezen\_dagnaam}}
+\index{lezen\_dagnaam@{lezen\_dagnaam}!DS1307@{DS1307}}
+\doxysubsubsection{\texorpdfstring{lezen\_dagnaam()}{lezen\_dagnaam()}}
+{\footnotesize\ttfamily uint8\+\_\+t DS1307\+::lezen\+\_\+dagnaam (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+~\newline
+ Read dayname 
+
+This function reads the daynames and returns the number (0 for sunday, 1 for monday etc.). Range from 0 to 6 \mbox{\Hypertarget{class_d_s1307_a06f431ea8fd44fdc726d1e3ed9358753}\label{class_d_s1307_a06f431ea8fd44fdc726d1e3ed9358753}} 
+\index{DS1307@{DS1307}!lezen\_jaar@{lezen\_jaar}}
+\index{lezen\_jaar@{lezen\_jaar}!DS1307@{DS1307}}
+\doxysubsubsection{\texorpdfstring{lezen\_jaar()}{lezen\_jaar()}}
+{\footnotesize\ttfamily uint8\+\_\+t DS1307\+::lezen\+\_\+jaar (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+~\newline
+ Read year number 
+
+This function reads the year number and returns an 8 bit long unsigned integer. Don\textquotesingle{}t forget to add 1952 to the return value of this function to get the right year \mbox{\Hypertarget{class_d_s1307_ab0b8e36fa35965d79de07019cbcea870}\label{class_d_s1307_ab0b8e36fa35965d79de07019cbcea870}} 
+\index{DS1307@{DS1307}!lezen\_maand@{lezen\_maand}}
+\index{lezen\_maand@{lezen\_maand}!DS1307@{DS1307}}
+\doxysubsubsection{\texorpdfstring{lezen\_maand()}{lezen\_maand()}}
+{\footnotesize\ttfamily uint8\+\_\+t DS1307\+::lezen\+\_\+maand (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+~\newline
+ Read month number 
+
+This function reads the month number and returns an 8 bit long unsigned integer. Range from 1 to 12 \mbox{\Hypertarget{class_d_s1307_a2c8555e89c96f51c1b0d9bc67531baeb}\label{class_d_s1307_a2c8555e89c96f51c1b0d9bc67531baeb}} 
+\index{DS1307@{DS1307}!lezen\_minuten@{lezen\_minuten}}
+\index{lezen\_minuten@{lezen\_minuten}!DS1307@{DS1307}}
+\doxysubsubsection{\texorpdfstring{lezen\_minuten()}{lezen\_minuten()}}
+{\footnotesize\ttfamily uint8\+\_\+t DS1307\+::lezen\+\_\+minuten (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+~\newline
+ Read minutes 
+
+This function reads the minutes and returns an 8 bit long unsigned integer. Range from 0 to 59 \mbox{\Hypertarget{class_d_s1307_ad69bd5754b1f69e10c031974e90db0f4}\label{class_d_s1307_ad69bd5754b1f69e10c031974e90db0f4}} 
+\index{DS1307@{DS1307}!lezen\_secondes@{lezen\_secondes}}
+\index{lezen\_secondes@{lezen\_secondes}!DS1307@{DS1307}}
+\doxysubsubsection{\texorpdfstring{lezen\_secondes()}{lezen\_secondes()}}
+{\footnotesize\ttfamily uint8\+\_\+t DS1307\+::lezen\+\_\+secondes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+~\newline
+ Read seconds 
+
+This function reads the seconds and returns an 8 bit long unsigned integer. Range from 0 to 59 \mbox{\Hypertarget{class_d_s1307_a7e4dfb0d22c5b78b26ee88d56c717e13}\label{class_d_s1307_a7e4dfb0d22c5b78b26ee88d56c717e13}} 
+\index{DS1307@{DS1307}!lezen\_uren@{lezen\_uren}}
+\index{lezen\_uren@{lezen\_uren}!DS1307@{DS1307}}
+\doxysubsubsection{\texorpdfstring{lezen\_uren()}{lezen\_uren()}}
+{\footnotesize\ttfamily uint8\+\_\+t DS1307\+::lezen\+\_\+uren (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+~\newline
+ Read hours 
+
+This function reads the hours and returns an 8 bit long unsigned integer. Range from 0 to 23 \mbox{\Hypertarget{class_d_s1307_aedb1bb6e229bc7fbee6fd850f890da05}\label{class_d_s1307_aedb1bb6e229bc7fbee6fd850f890da05}} 
+\index{DS1307@{DS1307}!set\_datetime@{set\_datetime}}
+\index{set\_datetime@{set\_datetime}!DS1307@{DS1307}}
+\doxysubsubsection{\texorpdfstring{set\_datetime()}{set\_datetime()}}
+{\footnotesize\ttfamily void DS1307\+::set\+\_\+datetime (\begin{DoxyParamCaption}\item[{int}]{seconde\+\_\+inv,  }\item[{int}]{minuut\+\_\+inv,  }\item[{int}]{uur\+\_\+inv,  }\item[{const int}]{weekdag\+\_\+inv,  }\item[{const int}]{dag\+\_\+inv,  }\item[{const int}]{maand\+\_\+inv,  }\item[{int}]{jaar\+\_\+inv }\end{DoxyParamCaption})}
+
+
+
+~\newline
+ Sets date and time 
+
+Sets the date and time. Use this once at the beginning of your project and then comment it out. The oscilator is turned on in this function and thanks to the battery it will continue to track time even if the power is disconnected \mbox{\Hypertarget{class_d_s1307_a83b066c640467622011573b0b15aa25d}\label{class_d_s1307_a83b066c640467622011573b0b15aa25d}} 
+\index{DS1307@{DS1307}!toggle\_12\_24@{toggle\_12\_24}}
+\index{toggle\_12\_24@{toggle\_12\_24}!DS1307@{DS1307}}
+\doxysubsubsection{\texorpdfstring{toggle\_12\_24()}{toggle\_12\_24()}}
+{\footnotesize\ttfamily void DS1307\+::toggle\+\_\+12\+\_\+24 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+~\newline
+ Fuction to switch between 12 or 24 hour format 
+
+This function switches between the 12 hour and the 24 hour format. In the 12 hour format the get\+\_\+uur function also returns if it is AM or PM by calling the uur\+\_\+modus variable \mbox{\Hypertarget{class_d_s1307_a94c88747a17d2b3f4eca163faa816dbe}\label{class_d_s1307_a94c88747a17d2b3f4eca163faa816dbe}} 
+\index{DS1307@{DS1307}!uitlezen@{uitlezen}}
+\index{uitlezen@{uitlezen}!DS1307@{DS1307}}
+\doxysubsubsection{\texorpdfstring{uitlezen()}{uitlezen()}}
+{\footnotesize\ttfamily void DS1307\+::uitlezen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+~\newline
+ Read date and time in string 
+
+Reads the date and time and returns it in an string. The string\textquotesingle{}s format is\+: dayname daynumber/monthnumber/year hour\+:minutes\+:seconds \mbox{\Hypertarget{class_d_s1307_acfc0c12d52fb1fb8fc0fb31383977c7f}\label{class_d_s1307_acfc0c12d52fb1fb8fc0fb31383977c7f}} 
+\index{DS1307@{DS1307}!uitlezen\_bytes@{uitlezen\_bytes}}
+\index{uitlezen\_bytes@{uitlezen\_bytes}!DS1307@{DS1307}}
+\doxysubsubsection{\texorpdfstring{uitlezen\_bytes()}{uitlezen\_bytes()}}
+{\footnotesize\ttfamily uint8\+\_\+t $\ast$ DS1307\+::uitlezen\+\_\+bytes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+~\newline
+ Read date and time in array 
+
+Reads the date and time and returns it in an array. The array format is \{dayname(int), daynumber, monthnumber, year, hour, minutes, seconds\} \mbox{\Hypertarget{class_d_s1307_ae2777af16fd728279491a46b488409bb}\label{class_d_s1307_ae2777af16fd728279491a46b488409bb}} 
+\index{DS1307@{DS1307}!uitzetten\_oscilator@{uitzetten\_oscilator}}
+\index{uitzetten\_oscilator@{uitzetten\_oscilator}!DS1307@{DS1307}}
+\doxysubsubsection{\texorpdfstring{uitzetten\_oscilator()}{uitzetten\_oscilator()}}
+{\footnotesize\ttfamily void DS1307\+::uitzetten\+\_\+oscilator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+~\newline
+ Fuction to turn off the oscilator 
+
+Turns the oscilator off, if it is already off then it gives a message through the terminal 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_d_s1307_afceb9da8cff0f16dbabe82bc13d36fd5}\label{class_d_s1307_afceb9da8cff0f16dbabe82bc13d36fd5}} 
+\index{DS1307@{DS1307}!bus@{bus}}
+\index{bus@{bus}!DS1307@{DS1307}}
+\doxysubsubsection{\texorpdfstring{bus}{bus}}
+{\footnotesize\ttfamily hwlib\+::i2c\+\_\+bus\+\_\+bit\+\_\+banged\+\_\+scl\+\_\+sda\& DS1307\+::bus\hspace{0.3cm}{\ttfamily [protected]}}
+
+All the registers of the \mbox{\hyperlink{class_d_s1307}{DS1307}} Chip @detail All the registers have there right address. \mbox{\Hypertarget{class_d_s1307_a9f6d2d2a8ddae75783b8d61283a0a2cc}\label{class_d_s1307_a9f6d2d2a8ddae75783b8d61283a0a2cc}} 
+\index{DS1307@{DS1307}!dag\_nummer@{dag\_nummer}}
+\index{dag\_nummer@{dag\_nummer}!DS1307@{DS1307}}
+\doxysubsubsection{\texorpdfstring{dag\_nummer}{dag\_nummer}}
+{\footnotesize\ttfamily uint8\+\_\+t DS1307\+::dag\+\_\+nummer\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Stores hour mode. 
+
+If it is an 0 then it is AM, if it is an 1 it is PM. if it is an 2 then it is in the 24 hour mode \mbox{\Hypertarget{class_d_s1307_a24a8a8cef5156f1a80c47f0a2453b042}\label{class_d_s1307_a24a8a8cef5156f1a80c47f0a2453b042}} 
+\index{DS1307@{DS1307}!secondes@{secondes}}
+\index{secondes@{secondes}!DS1307@{DS1307}}
+\doxysubsubsection{\texorpdfstring{secondes}{secondes}}
+{\footnotesize\ttfamily uint8\+\_\+t DS1307\+::secondes\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+7 bit address 
+
+Total write adres is 0x\+D0 and total read adres is 0x\+D1 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+HWLib/v1oopc-\/examples/\+IPASS/\mbox{\hyperlink{_d_s1307_8hpp}{DS1307.\+hpp}}\item 
+C\+:/\+HWLib/v1oopc-\/examples/\+IPASS/DS1307.\+cpp\end{DoxyCompactItemize}
